@@ -1,3 +1,5 @@
+// https://programmers.co.kr/learn/courses/30/lessons/12934
+
 function solution(n) {
   var answer = 0;
   const x = Math.sqrt(n);

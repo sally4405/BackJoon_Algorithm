@@ -1,3 +1,5 @@
+// https://programmers.co.kr/learn/courses/30/lessons/12924
+
 function solution(n) {
   var answer = 0;
   const arr = [];
