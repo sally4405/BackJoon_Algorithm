@@ -10,19 +10,33 @@ function solution(n, computers) {
     } else {
       for (let j = i + 1; j < n; j++) {
         if (computers[i][j]) {
+          const containList = [];
           for (let k = 0; k < network.length; k++) {
-            if (network[k].includes(i)) {
-              network[k].push(j);
-              break;
+            if (network[k].includes(i) || network[k].includes(j)) {
+              containList.push(k);
             }
-            if (network[k].includes(j)) {
-              network[k].push(i);
-              break;
+          }
+          if (!containList.length) {
+            network.push([i, j]);
+            break;
+          }
+          if (containList.length === 1) {
+            network[containList[0]].push(i);
+            network[containList[0]].push(j);
+            break;
+          }
+          if (containList.length > 1) {
+            console.log(containList);
+            // let joinedNetwort = [];
+            for (let l = 1; l < containList.length; l++) {
+              network[containList[0]].splice(0, 0, network[containList[l] - l]);
             }
-            if (k === network.length - 1) {
-              network.push([i, j]);
-              break;
-            }
+            // for(let l = 0; l < containList.length; l++) {
+            //   network.
+            //   joinedNetwort.concat(network[containList-l])
+            // }
+            // containList.reduce((acc, cur) => network[cur].join(acc), [i, j]);
+            break;
           }
         }
       }
