@@ -9,7 +9,7 @@ function solution(n, computers) {
   const res = new Set();
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
-      if (computers[i][j] == 1) {
+      if (computers[i][j] === 1) {
         union(i, j);
       }
     }
@@ -25,7 +25,7 @@ function solution(n, computers) {
 }
 
 const find = (x) => {
-  if (root[x] == x) {
+  if (root[x] === x) {
     return x;
   } else {
     return (root[x] = find(root[x]));
@@ -36,15 +36,14 @@ const union = (x, y) => {
   x = find(x);
   y = find(y);
 
-  if (x == y) return;
+  if (x === y) return;
 
   if (rank[x] < rank[y]) {
     root[x] = y;
+    rank[y]++;
   } else {
     root[y] = x;
-    if (rank[x] == rank[y]) {
-      rank[x]++;
-    }
+    rank[x]++;
   }
 };
 
