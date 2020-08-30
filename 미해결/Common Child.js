@@ -10,7 +10,7 @@ function commonChild(s1, s2) {
 const loop = (s1, s2, tempAnswer) => {
   if (!s1.length || !s2.length) answer = answer > tempAnswer ? answer : tempAnswer;
   for (let i = 0; i < s1.length; i++) {
-    const compare = s[i];
+    const compare = s1[i];
     for (let j = 0; j < s2.length; j++) {
       if (s2[j] === compare) {
         loop(s1.substring(i), s2.substring(j), tempAnswer + 1);
@@ -19,8 +19,8 @@ const loop = (s1, s2, tempAnswer) => {
   }
 };
 
-const s1 = HARRY;
-const s2 = SALLY;
+const s1 = "HARRY";
+const s2 = "SALLY";
 // 2
 
 // const s1 = AA
