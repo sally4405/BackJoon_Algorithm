@@ -1,7 +1,7 @@
 // https://www.acmicpc.net/problem/2588
 // 곱셈
 
-// const input = require("fs").readFileSync("/dev/stdin").toString().split("\n").map((n) => parseInt(n));
+// const input = require("fs").readFileSync("/dev/stdin").toString().split("\n");
 const input = "472\n385\n".split("\n");
 
 const a = parseInt(input[0]);
