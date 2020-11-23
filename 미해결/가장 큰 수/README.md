@@ -24,6 +24,8 @@ numbers | return
 
 
 ## 해결 전략 
+<details><summary>test1.js</summary>
+
 - `sort()`의 `compareFunction`을 이용
     - `int` 값을 `string`으로 바꾼 후 index로 제일 앞 자리부터 비교
         - 숫자가 다른 경우
@@ -45,7 +47,17 @@ numbers | return
                 ```
 
 - `join("")`로 합쳐서 return
+  
+</details>
+
+<details><summary>test2.js</summary>
+
+- 두 숫자를 `string`으로 변환 후 합쳐서 앞뒤를 반대로 붙인 두 숫자의 크기를 비교
+- 0으로만 이루어진 배열의 경우 '0' 하나만 출력되도록 예외 처리
+
+</details>
+
 
 ## 해결하지 못한 부분
-- 몇 가지 테스트 케이스 통과 못함
-- `compareFunction`을 따로 함수로 빼고 싶음
+- 몇 가지 테스트 케이스 통과 못함 => test2.js 파일에서 해결
+- `compareFunction`을 따로 함수로 빼고 싶음 => 안만듬
