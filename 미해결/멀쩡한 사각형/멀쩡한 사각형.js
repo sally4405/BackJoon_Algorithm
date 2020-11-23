@@ -1,30 +1,13 @@
+// https://programmers.co.kr/learn/courses/30/lessons/62048
+// [참고](https://leedakyeong.tistory.com/entry/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EB%A9%80%EC%A9%A1%ED%95%9C-%EC%82%AC%EA%B0%81%ED%98%95-in-python)
+
 function solution(w, h) {
-    let answer = 1;
-    const max = w * h;
-    //let canNotUse = 0;
-
-    const myMap = new Map();
-
-    for (let x = 0; x < w; x++) {
-        for (let y = 0; y < h; y++) {
-            const myPoint = new Point(x, y);
-            myMap.set('point', { x, y });
-        }
-    }
-
-
-    console.log(myMap);
-    //answer = max - canNotUse;
-
-
-    //return answer;
+  const GCD = gcd(Math.min(w, h), Math.max(w, h));
+  return w * h - (w + h - GCD);
 }
 
-class Point {
-    constructor(x, y) {
-        this.point = { x, y };
-        this.canUse = true;
-    }
-}
+const gcd = (min, max) => {
+  return min % max === 0 ? max : gcd(max, min % max);
+};
 
-solution(3, 4);
+console.log(solution(8, 12));
