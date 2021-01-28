@@ -4,19 +4,29 @@ function solution(dartResult) {
   var answer = [];
 
   const result = [];
-  let lastIndex = 0;
+  let nextFirstIndex = 0;
   let target;
 
   for (let i = 1; i < dartResult.length; i++) {
-    if (Number.isInteger(parseInt(dartResult[i])) && !(dartResult[i] === "0" && dartResult[i - 1] === "1")) {
-      target = dartResult.slice(lastIndex, i).split("");
-    } else if (i === dartResult.length - 1) {
-      target = dartResult.slice(lastIndex, dartResult.length);
+    if (!(dartResult[i] === "S" || dartResult[i] === "T" || dartResult[i] === "D")) continue;
+
+    let score;
+    let bonus;
+    let option;
+
+    if (dartResult[i + 1] === "*" || dartResult[i + 1] === "#") {
+      target = dartResult.slice(nextFirstIndex, i + 2).split("");
+      nextFirstIndex = i + 2;
+      option = target.pop();
     } else {
-      continue;
+      target = dartResult.slice(nextFirstIndex, i + 1).split("");
+      nextFirstIndex = i + 1;
     }
-    result.push({ score: parseInt(target[0]), bonus: target[1], option: target[2] });
-    lastIndex = i;
+
+    bonus = target.pop();
+    score = parseInt(target.join(""));
+
+    result.push({ score: score, bonus: bonus, option: option });
   }
 
   result.forEach((n) => {
@@ -38,9 +48,6 @@ function solution(dartResult) {
     }
     answer.push(finalScore);
   });
-
-  console.log(answer);
-  console.log(result);
 
   return answer.reduce((acc, cur) => acc + cur, 0);
 }
