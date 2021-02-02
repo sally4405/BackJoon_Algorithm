@@ -1,9 +1,11 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42862
 
 function solution(n, lost, reserve) {
-  let answer = n - lost.length;
   let realReserve = reserve.filter((v) => !lost.includes(v));
-  lost.map((n) => {
+  let realLost = lost.filter((v) => !reserve.includes(v));
+  let answer = n - realLost.length;
+
+  realLost.map((n) => {
     if (realReserve.includes(n - 1)) {
       answer++;
       realReserve = realReserve.filter((v) => v !== n - 1);
@@ -15,18 +17,6 @@ function solution(n, lost, reserve) {
       return;
     }
   });
-  // lost.map((n) => {
-  //   while (realReserve.length) {
-  //     const target = realReserve[0];
-  //     if (target === n - 1 || target === n + 1) {
-  //       answer++;
-  //       realReserve.shift();
-  //       return;
-  //     }
-  //     if (target >= n) return;
-  //     realReserve.shift();
-  //   }
-  // });
 
   return answer;
 }
