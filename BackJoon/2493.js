@@ -1,6 +1,8 @@
 // https://www.acmicpc.net/problem/2493
 // 탑
+
 // [참고](https://cocoon1787.tistory.com/43)
+// 스택
 
 // const [N, input] = require("fs").readFileSync("/dev/stdin").toString().split("\n");
 const [N, input] = "5\n6 9 5 7 4\n".split("\n");
