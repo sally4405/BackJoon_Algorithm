@@ -1,30 +1,33 @@
 // https://www.acmicpc.net/problem/1107
 // 리모컨
 
-// const input = require("fs").readFileSync("/dev/stdin").toString().split("\n");
-const input = "5457\n3\n6 7 8\n".split("\n");
-// const input = "5457\n9\n0 1 2 3 4 6 7 8 9\n".split("\n");
+// [참고](https://mygumi.tistory.com/157)
 
-const target = input
-  .shift()
-  .split("")
-  .map((n) => parseInt(n));
-const brokenNum = parseInt(input.shift());
-const brokenList = input
-  .shift()
-  .split(" ")
-  .map((n) => parseInt(n))
-  .sort();
+// const [n, m, input] = require("fs").readFileSync("/dev/stdin").toString().split("\n");
+// const [n, m, input] = "5457\n3\n6 7 8\n".split("\n");
+// const [n, m, input] = "100\n5\n0 1 2 3 4\n".split("\n");
+const [n, m, input] = "500000\n8\n0 2 3 4 6 7 8 9\n".split("\n");
 
-if (brokenNum === 10) return console.log(0);
-if (brokenNum === 0) return console.log(target.length);
+const target = n.split("").map((n) => parseInt(n));
+const remocon = Array.from({ length: 10 }, (v) => false);
+let answer = Math.abs(parseInt(n) - 100);
 
-let pushNum = "";
+input.split(" ").map((n) => (remocon[n] = true));
 
-for (let i = 0; i < target.length; i++) {
-  if (brokenList.includes(input[i])) {
+for (let i = 0; i <= 888888; i++) {
+  let flag = false;
+  const current = i.toString();
+
+  for (let j = 0; j < current.length; j++) {
+    const value = current.charAt(j);
+
+    if (remocon[value]) {
+      flag = true;
+      break;
+    }
   }
-  pushNum += input[i];
+
+  if (!flag) answer = answer > Math.abs(i - n) + current.length ? Math.abs(i - n) + current.length : answer;
 }
 
-console.log(pushNum.length + Math.abs(pushNum - target.join()));
+console.log(answer);
