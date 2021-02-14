@@ -1,6 +1,8 @@
 // https://www.acmicpc.net/problem/2108
 // 통계학
 
+// [참고](https://mjeong9316.tistory.com/172)
+
 // const input = require("fs").readFileSync("/dev/stdin").toString().split("\n").map((n) => parseInt(n));
 const input = "5\n1\n3\n8\n-2\n2\n"
   .toString()
