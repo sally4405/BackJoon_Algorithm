@@ -1,15 +1,11 @@
 // https://www.acmicpc.net/problem/2108
 // 통계학
 
-// [참고](https://mjeong9316.tistory.com/172)
+// const [N, ...input] = require("fs").readFileSync("/dev/stdin").toString().split("\n").map((n) => parseInt(n));
+const [N, ...input] = "5\n1\n3\n8\n-2\n2\n".split("\n").map((n) => parseInt(n));
+// const [N, ...input] = "5\n-1\n-2\n-3\n-1\n-2\n".split("\n").map((n) => parseInt(n));
+// const [N, ...input] = "1\n-1\n".split("\n").map((n) => parseInt(n));
 
-// const input = require("fs").readFileSync("/dev/stdin").toString().split("\n").map((n) => parseInt(n));
-const input = "5\n1\n3\n8\n-2\n2\n"
-  .toString()
-  .split("\n")
-  .map((n) => parseInt(n));
-
-const N = input.shift();
 input.pop();
 input.sort((a, b) => a - b);
 
@@ -23,7 +19,11 @@ input.map((n) => {
   else most[n - min] = 1;
 });
 
-const mm = Math.max(...most.filter((v) => v));
+// const mm = Math.max(...most.filter((v) => v));
+const mm = Math.max.apply(
+  null,
+  most.filter((v) => v)
+);
 const freq = most
   .map((v, i) => {
     if (v === mm) return i + min;
