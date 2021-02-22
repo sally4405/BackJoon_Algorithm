@@ -1,17 +1,23 @@
+// https://programmers.co.kr/learn/courses/30/lessons/12940
+// [참고](https://velog.io/@wooder2050/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%B5%9C%EB%8C%80%EA%B3%B5%EC%95%BD%EC%88%98%EC%99%80-%EC%B5%9C%EC%86%8C%EA%B3%B5%EB%B0%B0%EC%88%98-JavaScript)
+
 function solution(n, m) {
-  let gcd = 0;
-  let num = [n, m];
+  const gcd = (a, b) => {
+    if (!b) return a;
+    return gcd(b, a % b);
+  };
 
-  for (let i = 1; i <= Math.min.apply(null, num); i++) {
-    if (Math.min.apply(null, num) % i == 0 && Math.max.apply(null, num) % i == 0) {
-      gcd = i;
-    }
-  }
+  const lcm = (a, b) => {
+    return (a * b) / gcd(a, b);
+  };
 
-  return [num[0], num[1]];
+  return [gcd(n, m), lcm(n, m)];
 }
 
-const n = 3;
-const m = 12;
+const n = 2;
+const m = 5;
+
+// const n = 3;
+// const m = 12;
 
 console.log(solution(n, m));
