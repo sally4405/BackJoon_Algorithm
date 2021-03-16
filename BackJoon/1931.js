@@ -28,13 +28,17 @@ while (true) {
   let nextIndex;
   for (let i = index + 1; i < N; i++) {
     if (sorted[i][0] < finalTime) continue;
-    if (!nextIndex) nextIndex = i;
+    if (!nextIndex) {
+      nextIndex = i;
+      continue;
+    }
     nextIndex = sorted[nextIndex][1] < sorted[i][1] ? nextIndex : i;
   }
-  if (index === nextIndex || nextIndex >= N) break;
+
+  if (index === nextIndex || nextIndex > N - 1 || !nextIndex) break;
+
   index = nextIndex;
   finalTime = sorted[nextIndex][1];
-  console.log(sorted[index]);
   answer++;
 }
 
