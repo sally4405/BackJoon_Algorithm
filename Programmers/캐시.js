@@ -2,22 +2,21 @@
 
 function solution(cacheSize, cities) {
   var answer = 5;
-  const cityList = cityList.map((n) => n.toLowerCase());
-  let caches = [cityList[0]];
+  let caches = cacheSize ? [cities[0].toLowerCase()] : [];
 
-  for (let i = 1; i < cityList.length; i++) {
-    const city = cityList[i];
+  for (let i = 1; i < cities.length; i++) {
+    const city = cities[i].toLowerCase();
 
     if (caches.includes(city)) {
       answer += 1;
       const targetIndex = caches.indexOf(city);
       caches = caches.slice(0, targetIndex).concat(caches.slice(targetIndex + 1, caches.length));
       caches.push(city);
-      console.log(caches);
       continue;
     }
 
     answer += 5;
+    caches.push(city);
 
     if (caches.length > cacheSize) caches.shift();
   }
