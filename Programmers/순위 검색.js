@@ -1,23 +1,24 @@
 // https://programmers.co.kr/learn/courses/30/lessons/72412
+// [참고](https://velog.io/@alvin/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4-%EC%88%9C%EC%9C%84-%EA%B2%80%EC%83%89-Javascript)
 
 function solution(info, query) {
   var answer = [];
-  const infoMap = new Map();
+  const infoMap = {};
 
   for (let i = 0; i < info.length; i++) {
     cutNpush2Map(infoMap, info[i]);
   }
 
-  for (let value of infoMap.values()) {
-    value.sort((a, b) => b - a);
+  for (const key in infoMap) {
+    infoMap[key].sort((a, b) => b - a);
   }
 
   for (let i = 0; i < query.length; i++) {
-    const [language, end, age, foodScore] = query[i].split(" and ");
-    const [food, score] = foodScore.split(" ");
+    const splited = query[i].replace(/ and /g, " ").split(" ");
+    const score = parseInt(splited.pop());
 
-    const target = infoMap.get(`${language}${end}${age}${food}`);
-    answer.push(binarySearch(target, parseInt(score)));
+    const target = infoMap[splited.join("")];
+    answer.push(binarySearch(target, score));
   }
 
   return answer;
@@ -31,8 +32,8 @@ const cutNpush2Map = (map, str) => {
       for (let k = 0; k < 2; k++) {
         for (let m = 0; m < 2; m++) {
           const target = `${i ? language : "-"}${j ? end : "-"}${k ? age : "-"}${m ? food : "-"}`;
-          if (!map.has(target)) map.set(target, []);
-          map.set(target, [...map.get(target), parseInt(score)]);
+          if (!map[target]) map[target] = [];
+          map[target].push(parseInt(score));
         }
       }
     }
