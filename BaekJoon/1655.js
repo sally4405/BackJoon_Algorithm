@@ -1,6 +1,8 @@
 // https://www.acmicpc.net/problem/1655
 // 가운데를 말해요
 
+// [참고](https://blue-jay.tistory.com/31)
+
 // const [N, ...input] = require("fs").readFileSync("/dev/stdin").toString().split("\n");
 const [N, ...input] = "7\n1\n5\n2\n10\n-99\n7\n5\n".split("\n");
 
