@@ -1,25 +1,7 @@
 // https://leetcode.com/problems/add-binary/
 
 var addBinary = function (a, b) {
-  console.log(parseInt(a, 2));
-  console.log(BigInt(parseInt(a, 2)));
-  console.log();
-
-  console.log(parseInt(b, 2));
-  console.log(BigInt(parseInt(b, 2)));
-  console.log();
-
-  const c = BigInt(parseInt(a, 2)) + BigInt(parseInt(b, 2));
-  console.log(c);
-  console.log(c.toString());
-  // console.log(c.toString());
-  // console.log(
-  //   c
-  //     .toString()
-  //     .slice(0, c.length - 1)
-  //     .toString(2)
-  // );
-  return (BigInt(parseInt(a, 2)) + BigInt(parseInt(b, 2))).toString(2);
+  return (BigInt(`0b${a}`) + BigInt(`0b${b}`)).toString(2);
 };
 
 // const a = "11";
