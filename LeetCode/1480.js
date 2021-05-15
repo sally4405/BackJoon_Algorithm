@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/running-sum-of-1d-array/
+// Running Sum of 1d Array
 
 var runningSum = function (nums) {
   const answer = [nums[0]];
