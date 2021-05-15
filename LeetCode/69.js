@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/sqrtx/
+// Sqrt(x)
 
 var mySqrt = function (x) {
   return Math.floor(Math.sqrt(x));
