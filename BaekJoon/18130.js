@@ -14,7 +14,6 @@ const calc = (T, C) => {
 
 for (let i = 0; i < N; i++) {
   const [P, K, C] = input[i].split(" ").map((n) => parseInt(n));
-  // const price = P + C * (Math.ceil(Q / K) - 1);
   const price = P + calc(Math.ceil(Q / K) - 1, C);
   if (!answer || answer > price) {
     answer = price;
