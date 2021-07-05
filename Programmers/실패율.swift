@@ -3,38 +3,26 @@
 
 import Foundation
 
-class FailRate {
-    var stageNum: Int
-    var clearedStage: Double
-    var arrivedStage: Double
-    
-    init(stageNum: Int) {
-        self.stageNum = stageNum
-        self.clearedStage = 0
-        self.arrivedStage = 0
-    }
-}
-
 func solution(_ N:Int, _ stages:[Int]) -> [Int] {
     var answer: [Int] = []
-    var failRates: [FailRate] = []
+    var failRate: [[Int]] = []
     
     for i in 1..<N+2 {
-        failRates.append(FailRate(stageNum: i))
+        failRate.append([i, 0, 0])
     }
 
     for stage in stages {
         for i in 0..<stage {
-            failRates[i].arrivedStage = failRates[i].arrivedStage + 1
-            if i != stage - 1 { failRates[i].clearedStage = failRates[i].clearedStage + 1 }
+            failRate[i][1] = failRate[i][1] + 1
+            if i != stage - 1 { failRate[i][2] = failRate[i][2] + 1 }
         }
     }
 
-    failRates.removeLast()
-    failRates = failRates.sorted(by: { $0.clearedStage / $0.arrivedStage < $1.clearedStage / $1.arrivedStage })
+    failRate.removeLast()
+    failRate = failRate.sorted(by: { Double($0[2]) / Double($0[1]) < Double($1[2]) / Double($1[1]) })
 
-    for stage in failRates {
-        answer.append(stage.stageNum)
+    for stage in failRate {
+        answer.append(stage[0])
     }
     
     return answer
