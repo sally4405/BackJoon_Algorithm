@@ -3,26 +3,38 @@
 
 import Foundation
 
+class FailRate {
+    var stageNum: Int
+    var clearedStage: Double
+    var arrivedStage: Double
+    
+    init(stageNum: Int) {
+        self.stageNum = stageNum
+        self.clearedStage = 0
+        self.arrivedStage = 0
+    }
+}
+
 func solution(_ N:Int, _ stages:[Int]) -> [Int] {
     var answer: [Int] = []
-    var failRate: [Dictionary<String, Int>] = []
+    var failRates: [FailRate] = []
     
-    for i in 0..<N+1 {
-        failRate.append(["stageNum": i + 1, "clearedStage": 0, "arrivedStage": 0])
+    for i in 1..<N+2 {
+        failRates.append(FailRate(stageNum: i))
     }
-      
+
     for stage in stages {
         for i in 0..<stage {
-            failRate[i]["arrivedStage"] = Int(failRate[i]["arrivedStage"]!) + 1
-            if i != stage - 1 { failRate[i]["clearedStage"] = Int(failRate[i]["clearedStage"]!) + 1 }
+            failRates[i].arrivedStage = failRates[i].arrivedStage + 1
+            if i != stage - 1 { failRates[i].clearedStage = failRates[i].clearedStage + 1 }
         }
     }
-    
-    failRate.removeLast()
-    failRate = failRate.sorted(by: { Double($0["clearedStage"]!) / Double($0["arrivedStage"]!) < Double($1["clearedStage"]!) / Double($1["arrivedStage"]!) })
-    
-    for stage in failRate {
-        answer.append(Int(stage["stageNum"]!))
+
+    failRates.removeLast()
+    failRates = failRates.sorted(by: { $0.clearedStage / $0.arrivedStage < $1.clearedStage / $1.arrivedStage })
+
+    for stage in failRates {
+        answer.append(stage.stageNum)
     }
     
     return answer
